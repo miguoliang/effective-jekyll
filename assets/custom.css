@@ -1,0 +1,30 @@
+.o0 {
+    opacity: 0 !important;
+}
+
+.container {
+	position: relative;
+	height: 300px;
+	overflow: hidden;
+}
+
+.container div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    padding: 1rem;
+}
+
+.page-0 {
+    background-color: blue;
+}
+
+.page-1 {
+    background-color: red;
+}
+
+.page-2 {
+    background-color: yellow;
+}

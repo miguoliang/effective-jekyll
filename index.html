@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="{{ "/assets/custom.css" | relative_url }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<div class="container">
+    <div class="page-0"></div>
+    <div class="page-1 o0"></div>
+    <div class="page-2 o0"></div>
+</div>
+
+<script>
+
+    function animateCSS(element, animationName, callback) {
+        const node = document.querySelector(element)
+        node.classList.add('animated', animationName)
+
+        function handleAnimationEnd() {
+            node.classList.remove('animated', animationName)
+            node.removeEventListener('animationend', handleAnimationEnd)
+
+            if (typeof callback === 'function') callback(node)
+        }
+
+        node.addEventListener('animationend', handleAnimationEnd)
+    }
+
+    var currentSlide = 0;
+
+    setInterval(function () {
+        const outSlide = '.page-' + currentSlide;
+        currentSlide = ++currentSlide % 3;
+        const inSlide = '.page-' + currentSlide;
+
+        animateCSS(outSlide, 'slideOutLeft', function () {
+            const node = document.querySelector(outSlide);
+            node.classList.add('o0');
+        });
+
+        const node = document.querySelector(inSlide);
+        node.classList.remove('o0');
+        animateCSS(inSlide, 'slideInRight', null);
+    }, 5000, null);
+</script>
