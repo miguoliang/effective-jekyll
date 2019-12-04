@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+{%- include head.html -%}
+
+<body>
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content">
+
+        <div class="wrapper">
+            <div class="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" id="search-input" placeholder="Search posts by keyword ...">
+                <ul id="results-container"></ul>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            {{ content }}
+        </div>
+    </main>
+
+    {%- include footer.html -%}
+
+    <script
+        src="https://cdn.rawgit.com/christian-fei/Simple-Jekyll-Search/master/dest/simple-jekyll-search.min.js"></script>
+
+    <script>
+        window.simpleJekyllSearch = new SimpleJekyllSearch({
+            searchInput: document.getElementById('search-input'),
+            resultsContainer: document.getElementById('results-container'),
+            json: '{{ site.baseurl }}/search.json',
+            searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
+            noResultsText: 'No results found',
+            limit: 10,
+            fuzzy: false,
+            exclude: ['Welcome']
+        })
+    </script>
+
+</body>
+
+</html>
